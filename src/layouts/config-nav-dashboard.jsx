@@ -49,7 +49,7 @@ export const navData = [
   {
     subheader: 'Overview',
     items: [
-      { title: 'Mobile ', path: paths.dashboard.mobile, icon: ICONS.mobile },
+      { title: 'Mobile ', path: paths.dashboard.mobile.root, icon: ICONS.mobile },
       { title: 'App', path: paths.dashboard.root, icon: ICONS.dashboard },
       { title: 'Ecommerce', path: paths.dashboard.general.ecommerce, icon: ICONS.ecommerce },
       { title: 'Analytics', path: paths.dashboard.general.analytics, icon: ICONS.analytics },

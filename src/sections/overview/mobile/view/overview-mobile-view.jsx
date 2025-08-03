@@ -23,7 +23,7 @@ import { RouterLink } from 'src/routes/components';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useSetState } from 'src/hooks/use-set-state';
 
-import { PRODUCT_STOCK_OPTIONS } from 'src/_mock';
+import { PRODUCT_STOCK_OPTIONSP } from 'src/_mock';
 import { productList } from 'src/_mock/mobile/_mobile';
 import { DashboardContent } from 'src/layouts/dashboard';
 
@@ -73,7 +73,7 @@ export function OverviewMobileView() {
     (id) => {
       const deleteRow = tableData.filter((row) => row.id !== id);
 
-      toast.success('Delete success!');
+      toast.success('حذف با موفقیت انجام شد');
 
       setTableData(deleteRow);
     },
@@ -83,21 +83,21 @@ export function OverviewMobileView() {
   const handleDeleteRows = useCallback(() => {
     const deleteRows = tableData.filter((row) => !selectedRowIds.includes(row.id));
 
-    toast.success('Delete success!');
+    toast.success('حذف با موفقیت انجام شد');
 
     setTableData(deleteRows);
   }, [selectedRowIds, tableData]);
 
   const handleEditRow = useCallback(
     (id) => {
-      router.push(paths.dashboard.product.edit(id));
+      router.push(paths.dashboard.mobile.edit(id));
     },
     [router]
   );
 
   const handleViewRow = useCallback(
     (id) => {
-      router.push(paths.dashboard.product.details(id));
+      router.push(paths.dashboard.mobile.details(id));
     },
     [router]
   );
@@ -120,7 +120,7 @@ export function OverviewMobileView() {
   const columns = [
     {
       field: 'name',
-      headerName: 'Product',
+      headerName: 'گوشی ها',
       flex: 1,
       minWidth: 90,
       hideable: false,
@@ -129,22 +129,22 @@ export function OverviewMobileView() {
       ),
     },
     {
-      field: 'disposition',
-      headerName: 'disposition',
+      field: 'description',
+      headerName: 'توضیحات',
       width: 430,
       renderCell: (params) => <RenderCellCreatedAt params={params} />,
     },
     {
       field: 'inventoryType',
-      headerName: 'Stock',
+      headerName: 'موجودی',
       width: 150,
       type: 'singleSelect',
-      valueOptions: PRODUCT_STOCK_OPTIONS,
+      valueOptions: PRODUCT_STOCK_OPTIONSP,
       renderCell: (params) => <RenderCellStock params={params} />,
     },
     {
       field: 'price',
-      headerName: 'Price',
+      headerName: 'قیمت',
       width: 140,
       editable: true,
       renderCell: (params) => <RenderCellPrice params={params} />,
@@ -152,7 +152,7 @@ export function OverviewMobileView() {
     {
       type: 'actions',
       field: 'actions',
-      headerName: ' ',
+      headerName: 'اقدامات',
       align: 'right',
       headerAlign: 'right',
       width: 80,
@@ -163,19 +163,19 @@ export function OverviewMobileView() {
         <GridActionsCellItem
           showInMenu
           icon={<Iconify icon="solar:eye-bold" />}
-          label="View"
+          label="دیدن"
           onClick={() => handleViewRow(params.row.id)}
         />,
         <GridActionsCellItem
           showInMenu
           icon={<Iconify icon="solar:pen-bold" />}
-          label="Edit"
+          label="ویرایش"
           onClick={() => handleEditRow(params.row.id)}
         />,
         <GridActionsCellItem
           showInMenu
           icon={<Iconify icon="solar:trash-bin-trash-bold" />}
-          label="Delete"
+          label="حذف"
           onClick={() => {
             handleDeleteRow(params.row.id);
           }}
@@ -185,23 +185,31 @@ export function OverviewMobileView() {
     },
   ];
 
+  const customLocaleText = {
+    toolbarColumns: 'ستون‌ها',
+    toolbarFilters: 'فیلتر',
+    toolbarExport: 'خروجی',
+    toolbarExportCSV: 'دانلود CSV',
+    toolbarExportPrint: 'چاپ',
+  };
+
   return (
     <>
       <DashboardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
         <CustomBreadcrumbs
-          heading="Products list"
+          heading="لیست گوشی ها"
           links={[
-            { name: 'Dashboard', href: paths.dashboard.root },
-            { name: 'Mobile', href: paths.dashboard.mobile },
+            { name: 'داشبرد', href: paths.dashboard.root },
+            { name: 'گوشی ها', href: paths.dashboard.mobile.root },
           ]}
           action={
             <Button
               component={RouterLink}
-              href={paths.dashboard.product.new}
+              href={paths.dashboard.mobile.new}
               variant="contained"
               startIcon={<Iconify icon="mingcute:add-line" />}
             >
-              New product
+              گوشی جدید
             </Button>
           }
           sx={{ mb: { xs: 3, md: 5 } }}
@@ -216,6 +224,7 @@ export function OverviewMobileView() {
           }}
         >
           <DataGrid
+            localeText={customLocaleText}
             checkboxSelection
             disableRowSelectionOnClick
             rows={dataFiltered}
@@ -241,10 +250,10 @@ export function OverviewMobileView() {
       <ConfirmDialog
         open={confirmRows.value}
         onClose={confirmRows.onFalse}
-        title="Delete"
+        title="حذف"
         content={
           <>
-            Are you sure want to delete <strong> {selectedRowIds.length} </strong> items?
+            مطمئنی می‌خوای <strong> {selectedRowIds.length} </strong> رو آیتم حذف کنی
           </>
         }
         action={
@@ -256,7 +265,7 @@ export function OverviewMobileView() {
               confirmRows.onFalse();
             }}
           >
-            Delete
+            حذف
           </Button>
         }
       />
@@ -275,9 +284,9 @@ function CustomToolbar({
   return (
     <>
       <GridToolbarContainer>
-        <MobileTableToolbar filters={filters} options={{ stocks: PRODUCT_STOCK_OPTIONS }} />
+        <MobileTableToolbar filters={filters} options={{ stocks: PRODUCT_STOCK_OPTIONSP }} />
 
-        <GridToolbarQuickFilter />
+        <GridToolbarQuickFilter placeholder="جستجو کنید ..." />
 
         <Stack
           spacing={1}
@@ -293,7 +302,7 @@ function CustomToolbar({
               startIcon={<Iconify icon="solar:trash-bin-trash-bold" />}
               onClick={onOpenConfirmDeleteRows}
             >
-              Delete ({selectedRowIds.length})
+              حذف ({selectedRowIds.length})
             </Button>
           )}
 

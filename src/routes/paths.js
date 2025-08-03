@@ -93,7 +93,12 @@ export const paths = {
   },
   // DASHBOARD
   dashboard: {
-    mobile: `${ROOTS.DASHBOARD}/mobile`,
+    mobile: {
+      root: `${ROOTS.DASHBOARD}/mobile`,
+      details: (id) => `${ROOTS.DASHBOARD}/mobile/${id}`,
+      edit: (id) => `${ROOTS.DASHBOARD}/mobile/${id}/edit`,
+      new: `${ROOTS.DASHBOARD}/mobile/new`
+    },
     root: ROOTS.DASHBOARD,
     mail: `${ROOTS.DASHBOARD}/mail`,
     chat: `${ROOTS.DASHBOARD}/chat`,

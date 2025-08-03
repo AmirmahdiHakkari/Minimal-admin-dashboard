@@ -30,7 +30,7 @@ export function RenderCellPublish({ params }) {
 export function RenderCellCreatedAt({ params }) {
   return (
     <Stack spacing={0.5}>
-      <Box>{params.row.disposition}</Box>
+      <Box>{params.row.description}</Box>
     </Stack>
   );
 }
@@ -44,8 +44,8 @@ export function RenderCellStock({ params }) {
         value={(params.row.available * 100) / params.row.quantity}
         variant="determinate"
         color={
-          (params.row.inventoryType === 'out of stock' && 'error') ||
-          (params.row.inventoryType === 'low stock' && 'warning') ||
+          (params.row.inventoryType === 'ناموجود' && 'error') ||
+          (params.row.inventoryType === 'موجودی کم' && 'warning') ||
           'success'
         }
         sx={{ mb: 1, width: 100, height: 6, maxWidth: 80 }}

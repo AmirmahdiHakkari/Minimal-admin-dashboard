@@ -7,6 +7,7 @@ import { CacheProvider } from '@emotion/react';
 
 const cacheRtl = createCache({
   key: 'rtl',
+  // key: 'ltr',
   prepend: true,
   stylisPlugins: [rtlPlugin],
 });
@@ -16,6 +17,7 @@ export function RTL({ children, direction }) {
     document.dir = direction;
   }, [direction]);
 
+  // if (direction === 'ltr') {
   if (direction === 'rtl') {
     return <CacheProvider value={cacheRtl}>{children}</CacheProvider>;
   }

@@ -42,8 +42,6 @@ export function RenderCellCreatedAt({ params }) {
 // ----------------------------------------------------------------------
 
 export function RenderCellStock({ params }) {
-  console.log(params);
-
   return (
     <Stack justifyContent="center" sx={{ typography: 'caption', color: 'text.secondary' }}>
       <LinearProgress

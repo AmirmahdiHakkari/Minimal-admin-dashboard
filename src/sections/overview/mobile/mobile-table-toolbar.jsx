@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
 
 import Select from '@mui/material/Select';
-import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import Checkbox from '@mui/material/Checkbox';
 import InputLabel from '@mui/material/InputLabel';
@@ -12,8 +11,7 @@ import { useSetState } from 'src/hooks/use-set-state';
 
 import { varAlpha } from 'src/theme/styles';
 
-import { Iconify } from 'src/components/iconify';
-import { usePopover, CustomPopover } from 'src/components/custom-popover';
+import { usePopover } from 'src/components/custom-popover';
 
 // ----------------------------------------------------------------------
 
@@ -56,80 +54,41 @@ export function MobileTableToolbar({ filters, options }) {
   }, [filters, local.state.publish]);
 
   return (
-    <>
-      <FormControl sx={{ flexShrink: 0, width: { xs: 1, md: 200 } }}>
-        <InputLabel htmlFor="product-filter-stock-select-label">Stock</InputLabel>
+    <FormControl sx={{ flexShrink: 0, width: { xs: 1, md: 200 } }}>
+      <InputLabel htmlFor="product-filter-stock-select-label">موجودی</InputLabel>
 
-        <Select
-          multiple
-          value={local.state.stock}
-          onChange={handleChangeStock}
-          onClose={handleFilterStock}
-          input={<OutlinedInput label="Stock" />}
-          renderValue={(selected) => selected.map((value) => value).join(', ')}
-          inputProps={{ id: 'product-filter-stock-select-label' }}
-          sx={{ textTransform: 'capitalize' }}
-        >
-          {options.stocks.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              <Checkbox
-                disableRipple
-                size="small"
-                checked={local.state.stock.includes(option.value)}
-              />
-              {option.label}
-            </MenuItem>
-          ))}
-          <MenuItem
-            onClick={handleFilterStock}
-            sx={{
-              justifyContent: 'center',
-              fontWeight: (theme) => theme.typography.button,
-              border: (theme) =>
-                `solid 1px ${varAlpha(theme.vars.palette.grey['500Channel'], 0.16)}`,
-              bgcolor: (theme) => varAlpha(theme.vars.palette.grey['500Channel'], 0.08),
-            }}
-          >
-            Apply
-          </MenuItem>
-        </Select>
-      </FormControl>
-
-      <CustomPopover
-        open={popover.open}
-        anchorEl={popover.anchorEl}
-        onClose={popover.onClose}
-        slotProps={{ arrow: { placement: 'right-top' } }}
+      <Select
+        multiple
+        value={local.state.stock}
+        onChange={handleChangeStock}
+        onClose={handleFilterStock}
+        input={<OutlinedInput label="Stock" />}
+        renderValue={(selected) => selected.map((value) => value).join(', ')}
+        inputProps={{ id: 'product-filter-stock-select-label' }}
+        sx={{ textTransform: 'capitalize' }}
       >
-        <MenuList>
-          <MenuItem
-            onClick={() => {
-              popover.onClose();
-            }}
-          >
-            <Iconify icon="solar:printer-minimalistic-bold" />
-            Print
+        {options.stocks.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            <Checkbox
+              disableRipple
+              size="small"
+              checked={local.state.stock.includes(option.value)}
+            />
+            {option.label}
           </MenuItem>
-
-          <MenuItem
-            onClick={() => {
-              popover.onClose();
-            }}
-          >
-            <Iconify icon="solar:import-bold" />
-            Import
-          </MenuItem>
-
-          <MenuItem
-            onClick={() => {
-              popover.onClose();
-            }}
-          >
-            <Iconify icon="solar:export-bold" />
-            Export
-          </MenuItem>
-        </MenuList>
-      </CustomPopover>
-    </>
+        ))}
+        <MenuItem
+          onClick={handleFilterStock}
+          sx={{
+            justifyContent: 'center',
+            fontWeight: (theme) => theme.typography.button,
+            border: (theme) => `solid 1px ${varAlpha(theme.vars.palette.grey['500Channel'], 0.16)}`,
+            bgcolor: (theme) => varAlpha(theme.vars.palette.grey['500Channel'], 0.08),
+          }}
+        >
+          ثبت
+        </MenuItem>
+      </Select>
+    </FormControl>
   );
 }

@@ -30,6 +30,16 @@ export const PRODUCT_COLOR_NAME_OPTIONS = [
   { value: '#FFFFFF', label: 'White' },
 ];
 
+export const PRODUCT_COLOR_NAME_OPTIONSP = [
+  { value: '#FF4842', label: 'قرمز' },
+  { value: '#1890FF', label: 'آبی' },
+  { value: '#FFC0CB', label: 'صورتی' },
+  { value: '#00AB55', label: 'خاکستری' },
+  { value: '#FFC107', label: 'زرد' },
+  { value: '#000000', label: 'مشکی' },
+  { value: '#FFFFFF', label: 'سفید' },
+];
+
 export const PRODUCT_SIZE_OPTIONS = [
   { value: '7', label: '7' },
   { value: '8', label: '8' },
@@ -48,6 +58,12 @@ export const PRODUCT_STOCK_OPTIONS = [
   { value: 'in stock', label: 'In stock' },
   { value: 'low stock', label: 'Low stock' },
   { value: 'out of stock', label: 'Out of stock' },
+];
+
+export const PRODUCT_STOCK_OPTIONSP = [
+  { value: 'in stock', label: 'موجود' },
+  { value: 'low stock', label: 'موجودی کم' },
+  { value: 'out of stock', label: 'ناموجود' },
 ];
 
 export const PRODUCT_PUBLISH_OPTIONS = [
