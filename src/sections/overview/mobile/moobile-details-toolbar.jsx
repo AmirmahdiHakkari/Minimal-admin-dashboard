@@ -38,7 +38,7 @@ export function MobileDetailsToolbar({
 
         <Box sx={{ flexGrow: 1 }} />
 
-        <Tooltip title="Edit">
+        <Tooltip title="ویرایش">
           <IconButton component={RouterLink} href={editLink}>
             <Iconify icon="solar:pen-bold" />
           </IconButton>

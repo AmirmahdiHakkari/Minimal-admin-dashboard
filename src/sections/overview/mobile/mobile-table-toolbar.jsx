@@ -62,7 +62,7 @@ export function MobileTableToolbar({ filters, options }) {
         value={local.state.stock}
         onChange={handleChangeStock}
         onClose={handleFilterStock}
-        input={<OutlinedInput label="Stock" />}
+        input={<OutlinedInput label="موجودی" />}
         renderValue={(selected) => selected.map((value) => value).join(', ')}
         inputProps={{ id: 'product-filter-stock-select-label' }}
         sx={{ textTransform: 'capitalize' }}

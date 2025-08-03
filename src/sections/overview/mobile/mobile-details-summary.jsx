@@ -212,7 +212,7 @@ export function MobileDetailsSummary({
   const renderRating = (
     <Stack direction="row" alignItems="center" sx={{ color: 'text.disabled', typography: 'body2' }}>
       <Rating size="small" value={totalRatings} precision={0.1} readOnly sx={{ mr: 1 }} />
-      {`(${fShortenNumber(totalReviews)} reviews)`}
+      {`(${fShortenNumber(totalReviews)} بازدید)`}
     </Stack>
   );
 
