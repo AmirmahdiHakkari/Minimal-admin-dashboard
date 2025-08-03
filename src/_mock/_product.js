@@ -61,9 +61,9 @@ export const PRODUCT_STOCK_OPTIONS = [
 ];
 
 export const PRODUCT_STOCK_OPTIONSP = [
-  { value: 'in stock', label: 'موجود' },
-  { value: 'low stock', label: 'موجودی کم' },
-  { value: 'out of stock', label: 'ناموجود' },
+  { value: 'موجود', label: 'موجود' },
+  { value: 'موجودی کم', label: 'موجودی کم' },
+  { value: 'ناموجود', label: 'ناموجود' },
 ];
 
 export const PRODUCT_PUBLISH_OPTIONS = [
