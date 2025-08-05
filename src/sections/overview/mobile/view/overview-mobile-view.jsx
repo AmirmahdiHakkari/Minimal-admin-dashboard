@@ -191,6 +191,13 @@ export function OverviewMobileView() {
     toolbarExport: 'خروجی',
     toolbarExportCSV: 'دانلود CSV',
     toolbarExportPrint: 'چاپ',
+    footerPaginationLabelDisplayedRows: (pagination) => {
+      const { from, to, count } = pagination;
+      if (count === -1) {
+        return `${from}-${to} از بیشتر`;
+      }
+      return `${from}-${to} از ${count}`;
+    },
   };
 
   return (
@@ -236,9 +243,13 @@ export function OverviewMobileView() {
             slots={{
               toolbar: CustomToolbarCallback,
               noRowsOverlay: () => <EmptyContent />,
-              noResultsOverlay: () => <EmptyContent title="No results found" />,
+              noResultsOverlay: () => <EmptyContent title="نتیجه ای یافت نشد" />,
             }}
             slotProps={{
+              direction: 'rtl',
+              pagination: {
+                labelRowsPerPage: 'ستون ها در هر صفحه :',
+              },
               panel: { anchorEl: filterButtonEl },
               toolbar: { setFilterButtonEl },
             }}
